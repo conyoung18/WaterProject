@@ -16,7 +16,7 @@ public class WaterController : ControllerBase
     }
     
     [HttpGet("AllProjects")]
-    public IEnumerable<Project> GetProjects()
+    public IActionResult GetProjects(int pageHowMany = 10, int pageNumber = 1)
     {
         string? FavProjectType = Request.Cookies["FavProjectType"];
         Console.WriteLine("---------COOKIE--------\n" + FavProjectType);
@@ -29,7 +29,20 @@ public class WaterController : ControllerBase
             Expires = DateTime.Now.AddMinutes(1)
         });
         
-        return _waterContext.Projects.ToList();
+        var something = _waterContext.Projects
+            .Skip((pageNumber - 1) * pageHowMany)
+            .Take(pageHowMany)
+            .ToList();
+
+            var totalNumProjects = _waterContext.Projects.Count();
+
+            var someObject = new
+            {
+                Projects = something,
+                TotalNumProjects = totalNumProjects
+            };
+
+            return Ok(someObject);
     }
 
     [HttpGet("FunctionalProjects")]
