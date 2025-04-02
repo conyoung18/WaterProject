@@ -1,6 +1,6 @@
-import CookieConsent from 'react-cookie-consent';
+// import CookieConsent from 'react-cookie-consent';
 import CategoryFilter from '../components/CategoryFilter';
-import Fingerprint from '../components/Fingerprint';
+// import Fingerprint from '../components/Fingerprint';
 import ProjectList from '../components/ProjectList';
 import WelcomeBand from '../components/WelcomeBand';
 import { useState } from 'react';
@@ -26,12 +26,12 @@ function ProjectsPage() {
           </div>
         </div>
       </div>
-
+{/* 
       <CookieConsent>
         {' '}
         This website uses cookies to enhance the user experience.{' '}
-      </CookieConsent>
-      <Fingerprint />
+      </CookieConsent> */}
+      {/* <Fingerprint /> */}
     </>
   );
 }
